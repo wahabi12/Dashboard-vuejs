@@ -40,6 +40,18 @@
 											the country that generated the most revenue for 
 											{{ item.app }} is {{ useGetBestCountry(item) }}
 											<br/>
+											<BarChart class="d-flex mx-auto my-0"
+												:data="[
+													item.totalrevenuesAU,
+													item.totalrevenuesCN,
+													item.totalrevenuesFR,
+													item.totalrevenuesJP,
+													item.totalrevenuesUK,
+													item.totalrevenuesUS,
+												]"
+											/>
+									
+											<br/>
 											<v-row>
 												<v-col>
 												Total ads views: <b>{{ item.totalViews }}</b> <br/>
@@ -97,7 +109,7 @@
 import { ref, watch, onMounted} from "vue";
 import useGroupApps from "../functions/useGroupApps"
 import useFormatRevenues from "../functions/useFormatRevenues";
-import useGetBestRevenues from "@/functions/useGetBestCountry";
+import useGetBestCountry from "../functions/useGetBestCountry";
 
 let selectedTab = ref(0); 
 const links = ref(["Dashbaord", "About"]);
