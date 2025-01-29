@@ -14,42 +14,37 @@ type ChartProps =
 {
     data: number[];
 };
-const props = defineProps<ChartProps>();
-
-const chartData = computed(() => ({
+ const props = defineProps<ChartProps>();
+ const chartData = computed(() => ({
     labels: ["US", "UK", "FR", "JP", "AU", "CN"],
-    datasets: [
-        {
-            data: props.data,
-            backgroundColor:
-            [
-                "#77CEFF",
-                "#0079AF",
-                "#123E68",
-                "#97B0C4",
-                "#A5C8ED",
-                "#587aa3",
+    datasets: [{
+        data: props.data,
+        backgroundColor: [
+            "#77CEFF",
+            "#0079AF",
+            "#123E68",
+            "#97B0C4",
+            "#A5C8ED",
+            "#587aa3",
             ],
         },
     ],
 }));
 const { barChartProps, barChartRef } = useBarChart({
-    chartData: chartData.value,
+    chartData,
 });
 
 const options = ref({
     responsive: true,
-    plugins:
-    {
-        legend:
-        {
-             display: false,
+    plugins: {
+        legend: {
+            display: false,
         },
-        title:
-        {
+        title: {
             display: true,
             text: "Revenues (in USD) by countries",
         },
     },
 });
+    
 </script>
