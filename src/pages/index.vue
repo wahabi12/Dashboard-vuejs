@@ -26,10 +26,52 @@
 							v-if="groupData" 
 							:items="groupData"
 							:headers="headers"
-							:item-value="app"
-							:v-model:expanded="expanded"
-							show-expand="">
+							item-value="app"
+							v-model:expanded="expanded"
+							show-expand>
+							<template v-slot:header.app="{ column }">
+								{{ column.title?.toUpperCase() }}
+							</template>
 
+							<template v-slot:expanded-row="{ columns, item}">
+								<tr>
+									<td :colspan="columns.length">
+										<div style="padding: 15px;">
+											the country that generated the most revenue for 
+											{{ item.app }} is {{ useGetBestCountry(item) }}
+											<br/>
+											<v-row>
+												<v-col>
+												Total ads views: <b>{{ item.totalViews }}</b> <br/>
+												Total conversions: <b>{{ item.totalConversions }}</b> <br/>
+												Conversion %:
+												<b>
+													{{ ((item.totalConversions * 100) /
+												item.totalViews).toFixed(2) }} %
+												</b>
+												<br/>
+												Total revenues
+												<b>{{ useFormatRevenues(item.totalrevenues) }}</b>
+												</v-col>
+												<v-col>
+													Total banner revenues:
+													<b>{{ useFormatRevenues(item.banner) }}</b>
+													<br/>
+													Total full-screen revenues:
+													<b>{{ useFormatRevenues(item.fullscreen) }}</b>
+													<br/>
+													Total video revenues:
+													<b>{{ useFormatRevenues(item.video) }}</b>
+													<br/>
+													Total rewarded revenues:
+													<b>{{ useFormatRevenues(item.rewarded) }}</b>
+													<br/>
+												</v-col>
+											</v-row>
+										</div>
+									</td>
+								</tr>
+							</template>
 						</v-data-table>
 					</v-sheet>
 					
@@ -54,11 +96,15 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted} from "vue";
 import useGroupApps from "../functions/useGroupApps"
+import useFormatRevenues from "../functions/useFormatRevenues";
+import useGetBestRevenues from "@/functions/useGetBestCountry";
 
-let selectedTab = ref(0);
+let selectedTab = ref(0); 
 const links = ref(["Dashbaord", "About"]);
 let apiResult = ref();
 let groupData = ref<any[]>([]);
+let expanded = ref([]);
+
 
 const headers = ref([
 	{ title: "App",		key: "app" },
