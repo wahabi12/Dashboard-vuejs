@@ -1,6 +1,6 @@
 <template>
     <div id="app" style="width: 500px;">
-        <BarChart v-bind="barChartProps" :options="options"/>
+        
     </div>
 </template>
 
@@ -46,5 +46,5 @@ const options = ref({
         },
     },
 });
-    
+
 </script>
