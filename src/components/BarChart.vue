@@ -1,12 +1,12 @@
 <template>
     <div id="app" style="width: 500px;">
-        
+        <BarChart v-bind="barChartProps" :options="options" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed} from "vue";
-import { Chart, plugins, registerables } from "chart.js";
+import { Chart, registerables } from "chart.js";
 import { BarChart, useBarChart } from "vue-chart-3";
 Chart.register(...registerables);
 
@@ -14,9 +14,10 @@ type ChartProps =
 {
     data: number[];
 };
- const props = defineProps<ChartProps>();
+const props = defineProps<ChartProps>();
+console.log("Data received in BarChart:", props.data);
  const chartData = computed(() => ({
-    labels: ["US", "UK", "FR", "JP", "AU", "CN"],
+    labels: ["AU", "CN", "FR", "JP", "UK", "US"],
     datasets: [{
         data: props.data,
         backgroundColor: [
@@ -46,5 +47,5 @@ const options = ref({
         },
     },
 });
-
+    
 </script>

@@ -49,8 +49,9 @@
 													item.totalrevenuesUK,
 													item.totalrevenuesUS,
 												]"
+												
 											/>
-									
+											console.log("Data received in BarChart:", props.data);
 											<br/>
 											<v-row>
 												<v-col>
@@ -110,6 +111,7 @@ import { ref, watch, onMounted} from "vue";
 import useGroupApps from "../functions/useGroupApps"
 import useFormatRevenues from "../functions/useFormatRevenues";
 import useGetBestCountry from "../functions/useGetBestCountry";
+import BarChart from "@/components/BarChart.vue";
 
 let selectedTab = ref(0); 
 const links = ref(["Dashbaord", "About"]);
@@ -120,12 +122,12 @@ let expanded = ref([]);
 
 const headers = ref([
 	{ title: "App",		key: "app" },
-	{ title: "US",		key: "totalrevenuesUS" },
-	{ title: "UK",		key: "totalrevenuesUK" },
+	{ title: "AU",		key: "totalrevenuesUS" },
+	{ title: "CN",		key: "totalrevenuesUK" },
 	{ title: "FR",		key: "totalrevenuesFR" },
 	{ title: "JP",		key: "totalrevenuesJP" },
-	{ title: "CN",		key: "totalrevenuesCN" },
-	{ title: "AU",		key: "totalrevenuesAU" },
+	{ title: "UK",		key: "totalrevenuesCN" },
+	{ title: "US",		key: "totalrevenuesAU" },
 	{ title: "Total",	key: "totalrevenues" },
 	{ title: "",		key: "data-table-expand" },
 ]);

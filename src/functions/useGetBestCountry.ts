@@ -19,5 +19,6 @@ export default function useGetBestCountry(i: any)
             bestCountryName = property;
         }
     }
-    return `${bestCountryName.slice(-2)} with a total of ${useFormatRevenues(bestCountryValue)}.`;
+    return `${bestCountryName.slice(-2)} with a total of 
+        ${useFormatRevenues(bestCountryValue)}.`;
 }
