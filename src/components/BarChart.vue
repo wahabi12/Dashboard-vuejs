@@ -10,8 +10,7 @@ import { Chart, registerables } from "chart.js";
 import { BarChart, useBarChart } from "vue-chart-3";
 Chart.register(...registerables);
 
-type ChartProps =
-{
+type ChartProps ={
     data: number[];
 };
 const props = defineProps<ChartProps>();
